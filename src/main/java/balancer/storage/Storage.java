@@ -13,6 +13,7 @@ public class Storage {
             current = new Transaction(name, amount);
         } else {
             current.update(amount);
+            transactions.replace(name, current);
         }
     }
 
