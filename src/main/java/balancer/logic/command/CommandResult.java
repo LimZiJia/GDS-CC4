@@ -11,6 +11,11 @@ public class CommandResult {
         this.exit = exit;
     }
 
+    public CommandResult(String feedbackToUser) {
+        this.feedbackToUser = feedbackToUser;
+        this.exit = false;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }

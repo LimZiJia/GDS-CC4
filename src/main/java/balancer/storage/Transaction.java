@@ -12,4 +12,9 @@ public class Transaction {
     public void update(int amount) {
         this.amount += amount;
     }
+
+    @Override
+    public String toString() {
+        return person + " " + amount;
+    }
 }

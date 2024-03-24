@@ -14,6 +14,7 @@ public class Storage {
         } else {
             current.update(amount);
         }
+        transactions.put(name, current);
     }
 
     public HashMap<String, Transaction> getTransactions() {
