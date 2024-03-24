@@ -1,6 +1,7 @@
 package balancer.logic.parser;
 
 import balancer.logic.command.AddCommand;
+import balancer.logic.command.CalculateCommand;
 import balancer.logic.command.Command;
 import balancer.logic.command.ListCommand;
 import balancer.logic.parser.Exceptions.ParserException;
@@ -20,6 +21,8 @@ public class BalancerParser {
             return new AddParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+        case CalculateCommand.COMMAND_WORD:
+            return new CalculateCommand();
         default:
             throw new ParserException(PARSE_ERROR_MESSAGE);
         }
