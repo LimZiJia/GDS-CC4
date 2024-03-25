@@ -26,7 +26,8 @@ The add commands adds a transaction that NAME has made during the trip.<br>
 
 Format: `add NAME AMOUNT`<br>
 
-**TIP:** If the input is wrong, you can either use the `delete` command and `add NAME AMOUNT` again, or `add NAME -AMOUNT` to correct it. You can also check the list of transactions using the `list` command.
+**TIP:** <br>
+_If the input is wrong, you can either use the `delete` command and `add NAME AMOUNT` again, or `add NAME -AMOUNT` to correct it. You can also check the list of transactions using the `list` command._
 
 ### `list`
 Prints list of transactions. Each person's contribution will be aggregated.<br>
@@ -44,8 +45,10 @@ Prints out the final list of (the minimum number of) transactions that are requi
 
 Format: `calcuate`<br>
 
-NOTE: If somebody did not contribute anything throughout the trip, do `add NAME 0` to include him/her into the calculation.
-Similarly, if somebody should not be included in the final transaction, they should not have an entry in the transactions list. Do `delete NAME` to remove them.
+**NOTE:**<br>
+_(1) If somebody did not contribute anything throughout the trip, do `add NAME 0` to include him/her into the calculation.
+Similarly, if somebody should not be included in the final transaction, they should not have an entry in the transactions list. Do `delete NAME` to remove them.<br>
+(2) Amounts will be rounded up to nearest $0.01._
 
 ### `exit`
 Exits the program<br>
