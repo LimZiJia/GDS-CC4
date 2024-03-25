@@ -25,7 +25,7 @@ public class Main {
         try {
             storage.load();
             System.out.println(INITIAL_LOAD_SUCCESS);
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
