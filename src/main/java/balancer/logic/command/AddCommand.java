@@ -2,6 +2,8 @@ package balancer.logic.command;
 
 import balancer.storage.Storage;
 
+import java.io.IOException;
+
 public class AddCommand extends Command {
     private static final String ADD_COMMAND_SUCCESS = "'s transaction has been successfully added!";
     public static final String COMMAND_WORD = "add";
@@ -14,8 +16,10 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Storage storage) {
+    public CommandResult execute(Storage storage) throws IOException {
         storage.addTransaction(name, amount);
-        return new CommandResult(name + ADD_COMMAND_SUCCESS);
+        storage.save();
+        return new CommandResult(String.format("%s%s %s has now contributed $%.2f",
+                name, ADD_COMMAND_SUCCESS, name, storage.getAmount(name)));
     }
 }

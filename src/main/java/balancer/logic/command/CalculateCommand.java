@@ -24,7 +24,7 @@ public class CalculateCommand extends Command {
         return new CommandResult(result);
     }
 
-    private ArrayList<Transaction> preprocess (HashMap<String, Transaction> hashmap) {
+    private ArrayList<Transaction> preprocess(HashMap<String, Transaction> hashmap) {
         ArrayList<Transaction> current = new ArrayList<>(hashmap.values());
         float total = 0;
         for (Transaction t: current) {
@@ -59,7 +59,7 @@ public class CalculateCommand extends Command {
 
             // Make the largest possible transaction from biggestGiver to biggestReceiver
             float amountToTransfer = Math.min(-biggestGiver.getAmount(), biggestReceiver.getAmount());
-            sb.append(String.format("%s has to pay %s $%f\n",
+            sb.append(String.format("%s has to pay %s $%.2f\n",
                     biggestGiver.getPerson(), biggestReceiver.getPerson(), amountToTransfer));
 
             // Update transactions and transaction list

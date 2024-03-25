@@ -1,7 +1,5 @@
 package balancer.storage;
 
-import java.util.Comparator;
-
 public class Transaction {
     private String person;
     private float amount;
@@ -25,12 +23,24 @@ public class Transaction {
     }
 
     public boolean isEmpty() {
-        return amount == 0;
+        float epsilon = 0.00001f;
+        return Math.abs(amount) < epsilon;
+    }
+
+    public static Transaction savedStringToTransaction(String savedString) {
+        String[] split = savedString.split(" ");
+        if (split.length != 2) {
+            throw new UnsupportedOperationException();
+        } else {
+            String newName = split[0];
+            float newAmount = Float.parseFloat(split[1]);
+            return new Transaction(newName, newAmount);
+        }
     }
 
     @Override
     public String toString() {
-        return person + " " + amount;
+        return String.format("%s %.2f", person, amount);
     }
 
 }
