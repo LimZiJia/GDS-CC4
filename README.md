@@ -13,7 +13,7 @@ Also, don't worry about entering every transaction in one session because it is 
 
 # Setup
 1. Make sure you have Java 11 or above installed in your computer
-2. Download the latest ![release]()
+2. Download the latest ![release](https://github.com/LimZiJia/GDS-CC4/releases)
 3. Move the `.jar` file to your desired directory
 4. `cd` your terminal into the directory containing your `.jar` file
 5. Run the application by typing `java -jar filename.jar` into th teterminal
