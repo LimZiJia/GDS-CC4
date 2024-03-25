@@ -6,6 +6,9 @@ import balancer.storage.Transaction;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Represents a {@code ListCommand} to list all the transactions (aggregated) that happened so far.
+ */
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String EMPTY_STRING_REPLY = "List is empty!";
