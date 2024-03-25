@@ -8,10 +8,20 @@ import balancer.logic.command.ExitCommand;
 import balancer.logic.command.ListCommand;
 import balancer.logic.parser.exceptions.ParserException;
 
+/**
+ * A class that parses inputs of the user and gets the relevant {@code Command}.
+ */
 public class BalancerParser {
     public static final String PARSE_ERROR_MESSAGE =
             "The command you entered is not recognised or of the wrong format.";
 
+    /**
+     * Parses user inputs and produces corresponding {@code Command} or exceptions.
+     *
+     * @param userInput        The user's input.
+     * @return                 A {@code Command}.
+     * @throws ParserException For when a command is of the wrong format or unrecognised.
+     */
     public Command parseCommand(String userInput) throws ParserException {
         String[] split = userInput.split(" ", 2);
         String commandWord = split[0];

@@ -3,8 +3,10 @@ package balancer.logic.parser;
 import balancer.logic.command.AddCommand;
 import balancer.logic.parser.exceptions.ParserException;
 
+/**
+ * Parses commands starting with "add" and generates a {@code AddCommand}.
+ */
 public class AddParser implements Parser<AddCommand> {
-
     @Override
     public AddCommand parse(String userInput) throws ParserException {
         // Input will be of the form 'Name amount' and should be non-null

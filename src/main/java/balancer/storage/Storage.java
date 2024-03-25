@@ -9,17 +9,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Represents the in-memory version of the transaction list.
+ */
 public class Storage {
+    /** The path to the directory of the save file */
     private static Path pathDir;
+    /** The path to the save file */
     private static Path pathFile;
     private HashMap<String, Transaction> transactions = new HashMap<>();
 
+    /**
+     * Constructor for the {@code Storage} that specifies the save locations.
+     */
     public Storage(String dir, String name) {
         String userDir = System.getProperty("user.dir");
         pathDir = Paths.get(userDir + dir);
         pathFile = Paths.get(userDir + dir + name);
     }
 
+    /**
+     * Adds or updates transaction to the {@code HashMap}.
+     *
+     * @param name   Name of the person to add or update.
+     * @param amount The initial or update transaction amount.
+     */
     public void addTransaction(String name, int amount) {
         Transaction current = transactions.get(name);
         if (current == null) {
@@ -46,6 +60,11 @@ public class Storage {
         transactions.clear();
     }
 
+    /**
+     * Saves a copy of the {@code HashMap} to a file.
+     *
+     * @throws IOException
+     */
     public void save() throws IOException {
         assert pathDir != null : "Your directory is missing!";
         // Create directory if it does not exist
@@ -62,10 +81,15 @@ public class Storage {
         Files.createFile(pathFile);
         // Writing to the file
         List<Transaction> transactionList = new ArrayList<>(transactions.values());
-        List<String> saveString = transactionList.stream().map(Transaction::toString).toList();
+        List<String> saveString = transactionList.stream().map(Transaction::toString).collect(Collectors.toList());
         Files.write(pathFile, saveString);
     }
 
+    /**
+     * Loads {@code HashMap} converted from a file. Used to initialise the application.
+     *
+     * @throws IOException
+     */
     public void load() throws IOException {
         assert pathDir != null : "Your directory is missing!";
         // Create directory if it does not exist

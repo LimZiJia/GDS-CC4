@@ -6,6 +6,9 @@ import java.util.HashMap;
 import balancer.storage.Storage;
 import balancer.storage.Transaction;
 
+/**
+ * Represents a {@code ListCommand} to list all the transactions (aggregated) that happened so far.
+ */
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String EMPTY_STRING_REPLY = "List is empty!";
@@ -20,7 +23,7 @@ public class ListCommand extends Command {
             sb.append("\n");
         }
 
-        String list = sb.isEmpty() ? EMPTY_STRING_REPLY : sb.toString();
+        String list = sb.length() == 0 ? EMPTY_STRING_REPLY : sb.toString();
         return new CommandResult(list);
     }
 }

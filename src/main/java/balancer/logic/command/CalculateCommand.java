@@ -7,6 +7,11 @@ import balancer.storage.Storage;
 import balancer.storage.Transaction;
 import balancer.storage.TransactionComparator;
 
+/**
+ * Represents a {@code CalculateCommand} to generate the minimal list of transactions needed to balance expenses.
+ * Uses a greedy algorithm where every step, at least one giver or receiver will give or receive what they owe or are
+ * owed.
+ */
 public class CalculateCommand extends Command {
     public static final String COMMAND_WORD = "calculate";
 
@@ -24,6 +29,15 @@ public class CalculateCommand extends Command {
         return new CommandResult(result);
     }
 
+    /**
+     * Preprocesses the {@code HashMap} that is received from {@code storage}. Calculates the average (baseline) that
+     * everybody should end up spending and transforms the {@code HashMap} into an {@code ArrayList<Transaction>}
+     * of how much participants owe or are owed. It also removes everyone not involved in the final list of transactions
+     * (they already contributed exactly the average).
+     *
+     * @param hashmap Taken straight from the storage. Maps names to {@code Transaction}.
+     * @return        An {@code ArrayList<Transaction>} of the processed {@code HashMap}.
+     */
     private ArrayList<Transaction> preprocess(HashMap<String, Transaction> hashmap) {
         ArrayList<Transaction> current = new ArrayList<>(hashmap.values());
         float total = 0;
@@ -46,6 +60,14 @@ public class CalculateCommand extends Command {
         return current;
     }
 
+    /**
+     * The main algorithm that takes in an {@code ArrayList<Transaction>} and generates the minimum number of
+     * transactions needed to balance the payments.
+     *
+     * @param processed The preprocessed {@code ArrayList<Transaction>}.
+     * @return          The String representation of the list of transactions that need to occur in the form of
+     *                  {@code person1 has to pay person2 $X.XX}.
+     */
     private String greedy(ArrayList<Transaction> processed) {
         StringBuilder sb = new StringBuilder();
         TransactionComparator comparator = new TransactionComparator();
