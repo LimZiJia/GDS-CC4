@@ -1,11 +1,11 @@
 package balancer.logic.command;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import balancer.storage.Storage;
 import balancer.storage.Transaction;
 import balancer.storage.TransactionComparator;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CalculateCommand extends Command {
     public static final String COMMAND_WORD = "calculate";

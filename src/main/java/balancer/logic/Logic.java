@@ -3,12 +3,11 @@ package balancer.logic;
 import balancer.logic.command.Command;
 import balancer.logic.command.CommandResult;
 import balancer.logic.parser.BalancerParser;
-import balancer.logic.parser.Exceptions.ParserException;
 import balancer.storage.Storage;
 
 public class Logic {
-    BalancerParser balancerParser;
-    Storage storage;
+    private BalancerParser balancerParser;
+    private Storage storage;
 
     public Logic(BalancerParser balancerParser, Storage storage) {
         this.balancerParser = balancerParser;

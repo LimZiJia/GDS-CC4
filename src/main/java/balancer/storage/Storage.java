@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Storage {
-    private HashMap<String, Transaction> transactions = new HashMap<>();
     private static Path pathDir;
     private static Path pathFile;
+    private HashMap<String, Transaction> transactions = new HashMap<>();
 
     public Storage(String dir, String name) {
         String userDir = System.getProperty("user.dir");
@@ -83,5 +83,4 @@ public class Storage {
                 .map(Transaction::savedStringToTransaction)
                 .collect(Collectors.toMap(Transaction::getPerson, x -> x, (prev, next) -> next, HashMap::new));
     }
-
 }

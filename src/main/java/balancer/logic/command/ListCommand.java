@@ -1,10 +1,10 @@
 package balancer.logic.command;
 
-import balancer.storage.Storage;
-import balancer.storage.Transaction;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import balancer.storage.Storage;
+import balancer.storage.Transaction;
 
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";

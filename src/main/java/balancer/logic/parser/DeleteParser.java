@@ -1,7 +1,7 @@
 package balancer.logic.parser;
 
 import balancer.logic.command.DeleteCommand;
-import balancer.logic.parser.Exceptions.ParserException;
+import balancer.logic.parser.exceptions.ParserException;
 
 public class DeleteParser implements Parser<DeleteCommand> {
     public static final String WORD_FOR_DELETE_ALL = "all!";

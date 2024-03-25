@@ -1,7 +1,7 @@
 package balancer.logic.parser;
 
 import balancer.logic.command.AddCommand;
-import balancer.logic.parser.Exceptions.ParserException;
+import balancer.logic.parser.exceptions.ParserException;
 
 public class AddParser implements Parser<AddCommand> {
 
