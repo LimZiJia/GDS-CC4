@@ -81,7 +81,7 @@ public class Storage {
         Files.createFile(pathFile);
         // Writing to the file
         List<Transaction> transactionList = new ArrayList<>(transactions.values());
-        List<String> saveString = transactionList.stream().map(Transaction::toString).toList();
+        List<String> saveString = transactionList.stream().map(Transaction::toString).collect(Collectors.toList());
         Files.write(pathFile, saveString);
     }
 

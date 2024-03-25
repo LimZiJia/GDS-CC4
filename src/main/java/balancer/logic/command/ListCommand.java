@@ -23,7 +23,7 @@ public class ListCommand extends Command {
             sb.append("\n");
         }
 
-        String list = sb.isEmpty() ? EMPTY_STRING_REPLY : sb.toString();
+        String list = sb.length() == 0 ? EMPTY_STRING_REPLY : sb.toString();
         return new CommandResult(list);
     }
 }
