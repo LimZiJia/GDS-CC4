@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -34,7 +35,7 @@ public class Storage {
      * @param name   Name of the person to add or update.
      * @param amount The initial or update transaction amount.
      */
-    public void addTransaction(String name, int amount) {
+    public void addTransaction(String name, double amount) {
         Transaction current = transactions.get(name);
         if (current == null) {
             current = new Transaction(name, amount);
@@ -45,10 +46,17 @@ public class Storage {
     }
 
     public HashMap<String, Transaction> getTransactions() {
-        return this.transactions;
+        // Deep copy so that this.transactions cannot be altered
+        HashMap<String, Transaction> copy = new HashMap<>();
+        for (Map.Entry<String, Transaction> entry : this.transactions.entrySet()) {
+            String person = entry.getValue().getPerson();
+            double amount = entry.getValue().getAmount();
+            copy.put(entry.getKey(), new Transaction(person, amount));
+        }
+        return copy;
     }
 
-    public float getAmount(String name) {
+    public double getAmount(String name) {
         return transactions.get(name).getAmount();
     }
 
