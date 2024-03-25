@@ -1,8 +1,8 @@
 package balancer.logic.command;
 
-import balancer.storage.Storage;
-
 import java.io.IOException;
+
+import balancer.storage.Storage;
 
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";

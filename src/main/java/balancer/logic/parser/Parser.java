@@ -1,7 +1,7 @@
 package balancer.logic.parser;
 
 import balancer.logic.command.Command;
-import balancer.logic.parser.Exceptions.ParserException;
+import balancer.logic.parser.exceptions.ParserException;
 
 public interface Parser<T extends Command> {
 

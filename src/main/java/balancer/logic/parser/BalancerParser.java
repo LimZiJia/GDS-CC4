@@ -6,10 +6,11 @@ import balancer.logic.command.Command;
 import balancer.logic.command.DeleteCommand;
 import balancer.logic.command.ExitCommand;
 import balancer.logic.command.ListCommand;
-import balancer.logic.parser.Exceptions.ParserException;
+import balancer.logic.parser.exceptions.ParserException;
 
 public class BalancerParser {
-    public static final String PARSE_ERROR_MESSAGE = "The command you entered is not recognised or of the wrong format.";
+    public static final String PARSE_ERROR_MESSAGE =
+            "The command you entered is not recognised or of the wrong format.";
 
     public Command parseCommand(String userInput) throws ParserException {
         String[] split = userInput.split(" ", 2);

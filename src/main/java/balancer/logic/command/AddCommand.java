@@ -1,12 +1,12 @@
 package balancer.logic.command;
 
-import balancer.storage.Storage;
-
 import java.io.IOException;
 
+import balancer.storage.Storage;
+
 public class AddCommand extends Command {
-    private static final String ADD_COMMAND_SUCCESS = "'s transaction has been successfully added!";
     public static final String COMMAND_WORD = "add";
+    private static final String ADD_COMMAND_SUCCESS = "'s transaction has been successfully added!";
     private final String name;
     private final int amount;
 

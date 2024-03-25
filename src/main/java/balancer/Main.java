@@ -1,11 +1,11 @@
 package balancer;
 
+import java.util.Scanner;
+
 import balancer.logic.Logic;
 import balancer.logic.command.CommandResult;
 import balancer.logic.parser.BalancerParser;
 import balancer.storage.Storage;
-
-import java.util.Scanner;
 
 public class Main {
     private static final String SAVE_DIRECTORY_NAME = "/data/";
@@ -17,7 +17,7 @@ public class Main {
     private static void startUp() {
         try {
             storage.load();
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
