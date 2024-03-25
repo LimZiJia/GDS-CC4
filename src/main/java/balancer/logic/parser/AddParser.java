@@ -1,7 +1,7 @@
 package balancer.logic.parser;
 
 import balancer.logic.command.AddCommand;
-import balancer.logic.parser.Exceptions.ParserException;
+import balancer.logic.parser.exceptions.ParserException;
 
 /**
  * Parses commands starting with "add" and generates a {@code AddCommand}.

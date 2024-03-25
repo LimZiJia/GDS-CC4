@@ -3,15 +3,14 @@ package balancer.logic;
 import balancer.logic.command.Command;
 import balancer.logic.command.CommandResult;
 import balancer.logic.parser.BalancerParser;
-import balancer.logic.parser.Exceptions.ParserException;
 import balancer.storage.Storage;
 
 /**
  * The runs the logic of the application. Takes in the user input and gets the {@code CommandResult}.
  */
 public class Logic {
-    BalancerParser balancerParser;
-    Storage storage;
+    private BalancerParser balancerParser;
+    private Storage storage;
 
     /**
      * The constructor for {@code Logic}.

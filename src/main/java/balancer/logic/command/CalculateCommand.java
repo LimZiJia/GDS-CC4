@@ -1,12 +1,11 @@
 package balancer.logic.command;
 
-import balancer.storage.Storage;
-import balancer.storage.Transaction;
-import balancer.storage.TransactionComparator;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import balancer.storage.Storage;
+import balancer.storage.Transaction;
+import balancer.storage.TransactionComparator;
 
 /**
  * Represents a {@code CalculateCommand} to generate the minimal list of transactions needed to balance expenses.

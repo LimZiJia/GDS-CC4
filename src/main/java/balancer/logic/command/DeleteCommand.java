@@ -1,8 +1,8 @@
 package balancer.logic.command;
 
-import balancer.storage.Storage;
-
 import java.io.IOException;
+
+import balancer.storage.Storage;
 
 /**
  * Represents a {@code DeleteCommand} that deletes entries of a person or of every person.

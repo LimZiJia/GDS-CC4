@@ -6,7 +6,7 @@ import balancer.logic.command.Command;
 import balancer.logic.command.DeleteCommand;
 import balancer.logic.command.ExitCommand;
 import balancer.logic.command.ListCommand;
-import balancer.logic.parser.Exceptions.ParserException;
+import balancer.logic.parser.exceptions.ParserException;
 
 /**
  * A class that parses inputs of the user and gets the relevant {@code Command}.

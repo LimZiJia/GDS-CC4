@@ -1,7 +1,7 @@
 package balancer.logic.parser;
 
 import balancer.logic.command.DeleteCommand;
-import balancer.logic.parser.Exceptions.ParserException;
+import balancer.logic.parser.exceptions.ParserException;
 
 /**
  * Parses commands starting with "delete" and generates a {@code DeleteCommand}.

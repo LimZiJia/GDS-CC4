@@ -1,11 +1,11 @@
 package balancer;
 
+import java.util.Scanner;
+
 import balancer.logic.Logic;
 import balancer.logic.command.CommandResult;
 import balancer.logic.parser.BalancerParser;
 import balancer.storage.Storage;
-
-import java.util.Scanner;
 
 /**
  * The main entry point of the application.

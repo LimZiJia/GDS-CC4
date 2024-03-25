@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
  * Represents the in-memory version of the transaction list.
  */
 public class Storage {
-    private HashMap<String, Transaction> transactions = new HashMap<>();
     /** The path to the directory of the save file */
     private static Path pathDir;
     /** The path to the save file */
     private static Path pathFile;
+    private HashMap<String, Transaction> transactions = new HashMap<>();
 
     /**
      * Constructor for the {@code Storage} that specifies the save locations.
@@ -107,5 +107,4 @@ public class Storage {
                 .map(Transaction::savedStringToTransaction)
                 .collect(Collectors.toMap(Transaction::getPerson, x -> x, (prev, next) -> next, HashMap::new));
     }
-
 }
