@@ -1,4 +1,13 @@
 package balancer.logic.command;
 
-public class ExitCommand {
+import balancer.storage.Storage;
+
+public class ExitCommand extends Command {
+    public static final String EXIT_COMMAND_SUCCESS = "Your transactions has been saved. Good bye!";
+    public static final String COMMAND_WORD = "exit";
+
+    @Override
+    public CommandResult execute(Storage storage) {
+        return new CommandResult(EXIT_COMMAND_SUCCESS, true);
+    }
 }

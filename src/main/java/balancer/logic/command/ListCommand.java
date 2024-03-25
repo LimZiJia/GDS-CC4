@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
+    public static final String EMPTY_STRING_REPLY = "List is empty!";
 
     @Override
     public CommandResult execute(Storage storage) {
@@ -18,6 +19,8 @@ public class ListCommand extends Command {
             sb.append(t.toString());
             sb.append("\n");
         }
-        return new CommandResult(sb.toString());
+
+        String list = sb.isEmpty() ? EMPTY_STRING_REPLY : sb.toString();
+        return new CommandResult(list);
     }
 }
