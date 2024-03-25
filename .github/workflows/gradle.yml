@@ -11,14 +11,14 @@ jobs:
 
     steps:
       - name: Set up repository
-        uses: actions/checkout@master
+        uses: actions/checkout@main
 
       - name: Set up repository
-        uses: actions/checkout@master
+        uses: actions/checkout@maain
         with:
-          ref: master
+          ref: main
 
-      - name: Merge to master
+      - name: Merge to main
         run: git checkout --progress --force ${{ github.sha }}
 
       - name: Validate Gradle Wrapper
