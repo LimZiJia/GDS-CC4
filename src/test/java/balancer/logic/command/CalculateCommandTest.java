@@ -112,4 +112,36 @@ class CalculateCommandTest {
         String actual = cc.greedy(transactionList);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void allPersonsSame() {
+        HashMap<String, Transaction> transactions = new HashMap<>();
+        transactions.put("Alice", new Transaction("Alice", 12.34));
+        transactions.put("Bob", new Transaction("Bob", 12.34));
+        transactions.put("Charlie", new Transaction("Charlie", 12.34));
+        transactions.put("Don", new Transaction("Don", 12.34));
+        List<Transaction> transactionList = cc.preprocess(transactions);
+
+        String expected = "All good! No transactions required!";
+        String actual = cc.greedy(transactionList);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void onlyOneContributor() {
+        HashMap<String, Transaction> transactions = new HashMap<>();
+        transactions.put("Alice", new Transaction("Alice", 123.34));
+        transactions.put("Bob", new Transaction("Bob", 0));
+        transactions.put("Charlie", new Transaction("Charlie", 0));
+        transactions.put("Don", new Transaction("Don", 0));
+        List<Transaction> transactionList = cc.preprocess(transactions);
+
+        String expected = "Don has to pay Alice $30.84\n"
+                + "Bob has to pay Alice $30.84\n"
+                + "Charlie has to pay Alice $30.83\n"
+                + "\n"
+                + "Number of transactions: 3";
+        String actual = cc.greedy(transactionList);
+        assertEquals(expected, actual);
+    }
 }
