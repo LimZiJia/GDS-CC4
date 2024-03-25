@@ -1,11 +1,13 @@
 package balancer.storage;
 
+import java.text.DecimalFormat;
+
 /**
  * Represents a transaction.
  */
 public class Transaction {
     private String person;
-    private float amount;
+    private double amount;
 
     /**
      * Constructs a transaction.
@@ -13,7 +15,7 @@ public class Transaction {
      * @param person Name of the person involved in the transaction.
      * @param amount Amount of the transaction.
      */
-    public Transaction(String person, float amount) {
+    public Transaction(String person, double amount) {
         this.person = person;
         this.amount = amount;
     }
@@ -24,7 +26,7 @@ public class Transaction {
      * @param amount Amount to update. Can be negative.
      * @return       Updated {@code Transaction}.
      */
-    public Transaction update(float amount) {
+    public Transaction update(double amount) {
         this.amount += amount;
         return this;
     }
@@ -33,7 +35,7 @@ public class Transaction {
         return person;
     }
 
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -43,7 +45,7 @@ public class Transaction {
      * @return Ture if amount is 0.
      */
     public boolean isEmpty() {
-        float epsilon = 0.00001f; // Had to choose an arbitrarily small value due to float equality being bad.
+        double epsilon = 0.00001; // Had to choose an arbitrarily small value due to double equality being bad.
         return Math.abs(amount) < epsilon;
     }
 
@@ -59,14 +61,15 @@ public class Transaction {
             throw new UnsupportedOperationException();
         } else {
             String newName = split[0];
-            float newAmount = Float.parseFloat(split[1]);
+            double newAmount = Double.parseDouble(split[1]);
             return new Transaction(newName, newAmount);
         }
     }
 
     @Override
     public String toString() {
-        return String.format("%s %.2f", person, amount);
+        DecimalFormat df = new DecimalFormat("0.00");
+        return String.format("%s %s", person, df.format(amount));
     }
 
 }

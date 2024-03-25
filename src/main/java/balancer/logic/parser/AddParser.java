@@ -15,7 +15,7 @@ public class AddParser implements Parser<AddCommand> {
         }
         String[] arguments = userInput.split(" ");
         String name = arguments[0];
-        int amount = Integer.parseInt(arguments[1]);
+        double amount = Double.parseDouble(arguments[1]);
         return new AddCommand(name, amount);
     }
 }

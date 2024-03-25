@@ -1,7 +1,10 @@
 package balancer.logic.command;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import balancer.storage.Storage;
 import balancer.storage.Transaction;
@@ -14,6 +17,7 @@ import balancer.storage.TransactionComparator;
  */
 public class CalculateCommand extends Command {
     public static final String COMMAND_WORD = "calculate";
+    public static final String NO_TRANSACTIONS_REPLY = "All good! No transactions required!";
 
     @Override
     public CommandResult execute(Storage storage) {
@@ -21,7 +25,7 @@ public class CalculateCommand extends Command {
 
         // Remove all people that contributed exactly the average amount and transforms the amounts to their difference
         // from the average. +ve means then are owed money and -ve means that they owe money.
-        ArrayList<Transaction> processed = preprocess(transactions);
+        List<Transaction> processed = preprocess(transactions);
 
         // Run the greedy algorithm to get the minimum number of transactions
         String result = greedy(processed);
@@ -38,24 +42,19 @@ public class CalculateCommand extends Command {
      * @param hashmap Taken straight from the storage. Maps names to {@code Transaction}.
      * @return        An {@code ArrayList<Transaction>} of the processed {@code HashMap}.
      */
-    private ArrayList<Transaction> preprocess(HashMap<String, Transaction> hashmap) {
-        ArrayList<Transaction> current = new ArrayList<>(hashmap.values());
-        float total = 0;
+    public List<Transaction> preprocess(HashMap<String, Transaction> hashmap) {
+        List<Transaction> current = new ArrayList<>(hashmap.values());
+        double total = 0;
         for (Transaction t: current) {
             total += t.getAmount();
         }
-        float average = total / current.size();
+        double average = total / current.size();
 
         // Changing transactions to be difference from average
         current.replaceAll(x -> x.update(-average));
 
         // Removing all people who have to do nothing (people who are not owed or owe any money)
-        current.forEach(x -> {
-            int index = current.indexOf(x);
-            if (x.isEmpty()) {
-                current.remove(index);
-            }
-        });
+        current = current.stream().filter(t -> !t.isEmpty()).collect(Collectors.toList());
 
         return current;
     }
@@ -68,9 +67,12 @@ public class CalculateCommand extends Command {
      * @return          The String representation of the list of transactions that need to occur in the form of
      *                  {@code person1 has to pay person2 $X.XX}.
      */
-    private String greedy(ArrayList<Transaction> processed) {
+    public String greedy(List<Transaction> processed) {
+        DecimalFormat df = new DecimalFormat("0.00");
         StringBuilder sb = new StringBuilder();
         TransactionComparator comparator = new TransactionComparator();
+        int numberOfTransactions = 0;
+
         while (!processed.isEmpty()) {
             // Sort the list
             processed.sort(comparator);
@@ -80,9 +82,10 @@ public class CalculateCommand extends Command {
             Transaction biggestReceiver = processed.get(processed.size() - 1);
 
             // Make the largest possible transaction from biggestGiver to biggestReceiver
-            float amountToTransfer = Math.min(-biggestGiver.getAmount(), biggestReceiver.getAmount());
-            sb.append(String.format("%s has to pay %s $%.2f\n",
-                    biggestGiver.getPerson(), biggestReceiver.getPerson(), amountToTransfer));
+            double amountToTransfer = Math.min(-biggestGiver.getAmount(), biggestReceiver.getAmount());
+            sb.append(String.format("%s has to pay %s $%s\n",
+                    biggestGiver.getPerson(), biggestReceiver.getPerson(), df.format(amountToTransfer)));
+            numberOfTransactions++;
 
             // Update transactions and transaction list
             biggestGiver.update(amountToTransfer);
@@ -99,6 +102,8 @@ public class CalculateCommand extends Command {
             }
         }
 
-        return sb.toString();
+        return sb.length() == 0
+                ? NO_TRANSACTIONS_REPLY
+                : sb.append(String.format("\nNumber of transactions: %d", numberOfTransactions)).toString();
     }
 }
