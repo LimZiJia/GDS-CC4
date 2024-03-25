@@ -7,23 +7,24 @@
 # Commands
 For the command formats below, lower cases are the keywords and CAPS are the user inputs.
 
-### add
+### `add`
 Format: `add NAME AMOUNT`
 The add commands adds a transaction that NAME has made during the trip.
 TIP: If the input is wrong, you can either use the `delete` command or `add NAME -AMOUNT` to correct it. You can also check the list of transactions using the `list` command.
 
-### list
+### `list`
 Format: `list`
 Prints list of transactions. Each person's contribution will be aggregated.
 
-### delete
+### `delete`
 Format: `delete NAME`
 Deletes entries in the transaction table with NAME.
 
-### calculate
+### `calculate`
 Format: `calcuate`
 Prints out the final list of (the minimum number of) transactions that are required to resolve the balancing of funds.
 NOTE: If somebody did not contribute anything throughout the trip, do `add NAME 0` to include him/her into the calculation.
 
-### exit
+### `exit`
 Format: `exit`
+Exits the program
